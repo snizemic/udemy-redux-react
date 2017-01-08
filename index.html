@@ -12,54 +12,21 @@
 <body>
     <h1>It works!</h1>
     <p>Clicked <span id="value">replace-me</span> times</p>
-    <button id="increase">Increase</button>
-    <button id="decrease">Decrease</button>
-    <script type="text/javascript">
-
-        /***** reducer *****/
-        function counter(currentState, action) {
-            var DEFAULT_STATE = { count: 10, sum: 0 };
-            var nextState = Object.assign({}, currentState);
-            if (currentState === undefined) {
-                nextState = DEFAULT_STATE;
-                return nextState;
-            }
-
-            switch (action.type) {
-                case 'decrement':
-                    nextState.count = currentState.count - 1;
-                    return nextState;
-                default:
-                    return nextState;
-            }
-        };
-        
-        var store = Redux.createStore(counter);
-        console.log(store.getState().count);
-
-        var valueEl = document.getElementById('value');
-
-        function render() {
-            valueEl.innerHTML = store.getState().count;
-        }
-        render();
-        store.subscribe(render);
-
-        document.getElementById('decrease')
-            .addEventListener('click', function () {
-                var action = { type: 'decrement' };
-                store.dispatch(action);
-            });
-
-        document.getElementById('increase')
-            .addEventListener('click', function () {
-                setTimeout(function () {
-                    valueEl.innerHTML = parseInt(valueEl.innerHTML) + 1;
-                }, 1000);
-            });
-
-
-    </script>
+    <div>
+        <button id="increase">Increase</button>
+        <button id="decrease">Decrease</button>
+    </div>
+    <div>
+        <div>
+            <input type="text" id="a"> + <input type="text" id="b"> = <span id="value2">?</span>
+            <button id="sum">Sum</button>
+        </div>
+    </div>
+    <script src="actions/index.js" type="text/javascript"></script>
+    <script src="reducers/counter.js" type="text/javascript"></script>
+    <script src="reducers/sum.js" type="text/javascript"></script>
+    <script src="reducers/index.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript"></script>
 </body>
 
 </html>
